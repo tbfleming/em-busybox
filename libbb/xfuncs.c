@@ -264,6 +264,7 @@ int FAST_FUNC get_terminal_width_height(int fd, unsigned *width, unsigned *heigh
 	/* I've seen ioctl returning 0, but row/col is (still?) 0.
 	 * We treat that as an error too.  */
 	err = ioctl(fd, TIOCGWINSZ, &win) != 0 || win.ws_row == 0;
+    //err = 1; // emscripten hack
 	if (height)
 		*height = wh_helper(win.ws_row, 24, "LINES", &err);
 	if (width)

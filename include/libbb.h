@@ -2123,3 +2123,12 @@ void bbunit_settestfailed(void);
 POP_SAVED_FUNCTION_VISIBILITY
 
 #endif
+
+// emscripten hack
+#undef TIOCGWINSZ
+#undef M_TRIM_THRESHOLD
+#define sigisemptyset(s) 0
+#define ioctl(a,b,c) 1
+#define sigaction(a,b,c) 0
+#define BB_FATAL_SIGS 0
+#define signal(a, b) NULL
