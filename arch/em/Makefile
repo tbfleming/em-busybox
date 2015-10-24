@@ -8,10 +8,12 @@ cmd_busybox__ = \
       $(CC) \
       -o $@.js \
       --memory-init-file 0 \
+      -Wl,--start-group \
+      $(CFLAGS) \
       $(CFLAGS_busybox) \
       $(LDFLAGS) \
+      $(EM_LDFLAGS) \
       $(EXTRA_LDFLAGS) \
-      -Wl,--start-group \
       $(core-y) \
       $(libs-y) \
       $(patsubst %,-l%,$(subst :, ,$(LDLIBS))) \
